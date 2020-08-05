@@ -4,11 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const fileUpload = require('express-fileupload');
-var cors = require('cors');
-
-const uploadRouter = require('./src/routes/uploadController');
-const applicationRouter = require('./src/routes/applicationController');
-const runRouter = require('./src/routes/runController');
+const cors = require('cors');
 
 const app = express();
 
@@ -22,26 +18,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-var whitelist = ['http://localhost']
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
 app.use(cors());
 
 app.use(fileUpload({
   createParentPath : true,
 }));
 
+const applicationRouter = require('./src/routes/applicationController');
+const testRouter = require('./src/routes/testController');
+
 app.use('/applications', applicationRouter);
-app.use('/upload', uploadRouter);
-app.use('/runs', runRouter);
+app.use('/tests', testRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
