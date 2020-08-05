@@ -22,12 +22,13 @@ const index = async (req, res) => {
             include: {
                 model: Testrun,
                 limit: 10,
+                subQuery: true,
                 order: [
                     ['createdAt', 'DESC']
                 ]
             },
         }
-    );
+    ).catch(error => {console.log(error); res.status(500).send(error);});
     return res.status(200).send(JSON.stringify(applications));
 }
 

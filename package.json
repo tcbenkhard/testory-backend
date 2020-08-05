@@ -17,7 +17,7 @@
     "jade": "~1.11.0",
     "junitxml-to-javascript": "^1.1.4",
     "morgan": "~1.9.1",
-    "sequelize": "^6.3.3",
+    "sequelize": "^6.3.4",
     "sqlite3": "^5.0.0",
     "uuid": "^8.2.0"
   },
