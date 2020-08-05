@@ -22,7 +22,7 @@ const index = async (req, res) => {
             include: {
                 model: Testrun,
                 limit: 10,
-                subQuery: true,
+                separate: true,
                 order: [
                     ['createdAt', 'DESC']
                 ]
