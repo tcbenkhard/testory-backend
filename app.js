@@ -26,9 +26,11 @@ app.use(fileUpload({
 
 const applicationRouter = require('./src/routes/applicationController');
 const testRouter = require('./src/routes/testController');
+const integrationRouter = require('./src/routes/integrationController');
 
 app.use('/applications', applicationRouter);
 app.use('/tests', testRouter);
+app.use('/integrations', integrationRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
